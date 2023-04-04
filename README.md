@@ -1,4 +1,4 @@
-# Real-time ChatGPT service, based on the latest gpt-3.5-turbo-0301 model
+# Real-time ChatGPT service, support GPT3/GPT4, support conversation and generate pictures from sentences
 
 - [English README](README.md)
 - [中文 README](README_CN.md)
@@ -17,8 +17,13 @@
 
 ## Demo
 
+- Real-time conversation mode
+
 ![](chatgpt-service.gif)
 
+- Generate picture patterns from sentences
+
+![](chatgpt-image.jpeg)
 
 ## Quick start
 
@@ -31,11 +36,14 @@ cd chatgpt-service
 # ChatGPT registration tutorial: https://www.cnblogs.com/damugua/p/16969508.html
 # ChatGPT API key management page: https://beta.openai.com/account/api-keys
 
-# Modify the config.yaml configuration file, modify the appKey, and change it to your openai.com API key
+# Modify the config.yaml configuration file, modify the apiKey, and change it to your openai.com API key
 vi config.yaml
 #  your openai.com API key
-appKey: "xxxxxx"
+apiKey: "xxxxxx"
 
+# create pictures directory
+mkdir -p assets
+chown -R 1000:1000 assets
 
 # Start the service with docker-compose
 docker-compose up -d
@@ -51,6 +59,9 @@ chatgpt-stream    /docker-entrypoint.sh ngin ...   Up      0.0.0.0:3000->80/tcp,
 # To access the page, please ensure that your server can access the chatGPT API
 # http://localhost:3000
 ```
+
+- Enter the question directly, it will call the ChatGPT interface to return the answer
+- Enter the picture description after `/image`, it will call the DALL-E2 interface to automatically generate pictures through the picture description
 
 ## How to build
 

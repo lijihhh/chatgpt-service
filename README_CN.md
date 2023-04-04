@@ -1,4 +1,4 @@
-# 实时ChatGPT服务，基于最新的gpt-3.5-turbo-0301模型
+# 实时ChatGPT服务，支持GPT3/GPT4，支持对话和通过句子生成图片
 
 - [English README](README.md)
 - [中文 README](README_CN.md)
@@ -17,8 +17,13 @@
 
 ## 效果图
 
+- 实时对话模式
+
 ![](chatgpt-service.gif)
 
+- 通过句子生成图片模式
+
+![](chatgpt-image.jpeg)
 
 ## 快速开始
 
@@ -31,11 +36,14 @@ cd chatgpt-service
 # chatGPT的注册教程: https://www.cnblogs.com/damugua/p/16969508.html
 # chatGPT的APIkey管理界面: https://beta.openai.com/account/api-keys
 
-# 修改config.yaml配置文件，修改appKey，改为你的openai.com的appKey
+# 修改config.yaml配置文件，修改apiKey，改为你的openai.com的apiKey
 vi config.yaml
-# openai的appKey，改为你的apiKey
-appKey: "xxxxxx"
+# openai的apiKey，改为你的apiKey
+apiKey: "xxxxxx"
 
+# 创建生成的图片目录
+mkdir -p assets
+chown -R 1000:1000 assets
 
 # 使用docker-compose启动服务
 docker-compose up -d
@@ -51,6 +59,9 @@ chatgpt-stream    /docker-entrypoint.sh ngin ...   Up      0.0.0.0:3000->80/tcp,
 # 访问页面，请保证你的服务器可以访问chatGPT的api接口
 # http://localhost:3000
 ```
+
+- 直接输入问题，则调用ChatGPT接口返回答案
+- `/image `后边输入想要的图片描述，则调用DALL-E2接口，通过图片描述自动生成图片
 
 ## 如何编译
 
